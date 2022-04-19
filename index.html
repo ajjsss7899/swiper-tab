@@ -146,30 +146,18 @@ function slider(){
     var slideNum = []; //슬라이드 개수
     var loopChk = ''; //무한반복 체크
     var viewNum = ''; //슬라이드 개수 (옵션)
+    var winWChk = ''; //디바이스 체크
     
-    //디바이스 체크
-    var winWChk = ''; 
-    var winW = window.innerWidth; //화면 가로사이즈
-    
-    if (winW > 1280){ //PC 버전
-        winWChk = 'pc';
-    }else if(winW < 1281 && winW > 767){ //태블릿 버전
-        winWChk = 'ta';
-    }else{ //모바일 버전
-        winWChk = 'mo'
-    }
-
     $(".slider").each(function(index){
         var $this = $(this);
-
         //슬라이드 인덱스 클래스 추가
         $this.addClass("slider-" + index);
         //슬라이드, 옵션 배열 추가
         swiperArr.push(undefined);
         slideInx.push(0);
         slideNum.push($this.find('.swiper-slide').length)
-
-        $(window).on('resize', function (){
+        
+        $(window).on('load resize', function (){
             winW = window.innerWidth;
             if(winWChk != 'pc' && winW > 1280){ //PC 버전으로 전환할 때
                 winWChk = 'pc'
@@ -182,9 +170,7 @@ function slider(){
                 sliderAct();
             }
         })
-    }).promise().done(function(){
-        sliderAct(); //슬라이드 실행
-    });
+    })
     
     function sliderAct(){
         $(".slider").each(function(index){
