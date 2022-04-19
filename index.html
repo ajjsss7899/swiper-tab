@@ -150,10 +150,13 @@ function slider(){
     //디바이스 체크
     var winWChk = ''; 
     var winW = window.innerWidth; //화면 가로사이즈
-    if (winW > 768){ //PC 버전
+    
+    if (winW > 1280){ //PC 버전
         winWChk = 'pc';
-    }else{ //mobile 버전
-        winWChk = 'mo';
+    }else if(winW < 1281 && winW > 767){ //태블릿 버전
+        winWChk = 'ta';
+    }else{ //모바일 버전
+        winWChk = 'mo'
     }
 
     $(".slider").each(function(index){
@@ -234,6 +237,7 @@ function slider(){
         });
     }
 }
+
 </script>
 </body>
 </html>
